@@ -1,0 +1,13 @@
+asyncpg
+celery[redis]==5.3.6
+databases
+fastapi[all]
+Hypercorn
+ipdb==0.13.13
+ipython==8.11.0
+passlib[bcrypt]
+psycopg
+PyJWT==2.9.0
+python-decouple==3.8
+SQLAlchemy
+whitenoise==6.4.0

@@ -1,0 +1,6 @@
+.idea
+.data
+config/deployments
+venv
+.rough
+__pycache__

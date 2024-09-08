@@ -1,0 +1,54 @@
+services:
+
+  iam:
+    image: 'fast_banking:development'
+    build:
+      context: .
+    tty: true
+    container_name: fast_banking_iam
+    volumes:
+      - ./src/iam:/iam
+      - .data/iam/static:/var/www/static
+      - .data/iam/media:/var/www/media
+    restart: always
+    working_dir: /iam
+
+  customers:
+    image: 'fast_banking:development'
+    tty: true
+    container_name: fast_banking_customers
+    volumes:
+      - ./src/customers:/customers
+      - .data/customers/static:/var/www/static
+      - .data/customers/media:/var/www/media
+    restart: always
+    working_dir: /customers
+
+#  redis:
+#    image: redis:7.2.4-alpine
+#    container_name: fast_banking_redis
+#    ports:
+#      - "6379:6379"
+
+  kafka:
+    image: apache/kafka:3.8.0
+    tty: true
+    container_name: fast_banking_kafka
+    env_file:
+      - ./config/development/kafka.configuration
+    restart: always
+    volumes:
+      - .data/kafka:/var/lib/kafka/data
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+
+  db:
+    image: postgres:16.4-bullseye
+    container_name: fast_banking_db
+    env_file:
+      - ./config/development/db.configuration
+    volumes:
+      - .data/db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
