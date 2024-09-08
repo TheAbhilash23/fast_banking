@@ -3,7 +3,6 @@ celery[redis]==5.3.6
 databases
 fastapi[all]
 Hypercorn
-ipdb==0.13.13
 ipython==8.11.0
 passlib[bcrypt]
 psycopg
